@@ -7,7 +7,7 @@ import {
 } from "../store/slices/updateProfileSlice";
 import { getUser } from "../store/slices/userSlice";
 import { FaRegEyeSlash, FaEye } from "react-icons/fa";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
 
 const UpdatePassword = () => {
   const [oldPassword, setOldPassword] = useState("");
@@ -33,11 +33,11 @@ const UpdatePassword = () => {
     if (error) {
       toast.error(error);
       dispatch(clearAllUpdateProfileErrors());
-      if (isUpdated) {
-        toast.success("Password Updated");
-        dispatch(getUser());
-        dispatch(clearAllUpdateProfileErrors());
-      }
+    }
+    if (isUpdated) {
+      toast.success("Password Updated");
+      dispatch(getUser());
+      dispatch(clearAllUpdateProfileErrors());
     }
   }, [dispatch, loading, error, isUpdated]);
 

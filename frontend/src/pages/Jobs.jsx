@@ -39,6 +39,7 @@ const Jobs = () => {
   };
 
   const cities = [
+    "All",
     "Karachi",
     "Lahore",
     "Islamabad",
@@ -62,6 +63,7 @@ const Jobs = () => {
   ];
 
   const nichesArray = [
+    "All",
     "Software Development",
     "Web Development",
     "Cybersecurity",
@@ -104,6 +106,7 @@ const Jobs = () => {
               <div className="cities">
                 <h2>Filter Job By City</h2>
                 {cities.map((city, index) => (
+                  <>
                   <div key={index}>
                     <input
                       type="radio"
@@ -112,9 +115,10 @@ const Jobs = () => {
                       value={city}
                       checked={selectedCity === city}
                       onChange={() => handleCityChange(city)}
-                    />
+                      />
                     <label htmlFor={city}>{city}</label>
                   </div>
+                      </>
                 ))}
               </div>
               <div className="cities">
@@ -157,8 +161,7 @@ const Jobs = () => {
                 </select>
               </div>
               <div className="jobs_container">
-                {jobs &&
-                  jobs.map((element) => {
+                {jobs && jobs.length > 0 ? (jobs.map((element) => {
                     return (
                       <div className="card" key={element._id}>
                         {element.hiringMultipleCandidates === "Yes" ? (
@@ -188,7 +191,16 @@ const Jobs = () => {
                         </div>
                       </div>
                     );
-                  })}
+                  })) : (
+                  /************************************************************/
+                  /* BUG No.2 */
+                  <img src="./notfound.png" alt="job-not-found" style={{width: "100%"}}/>)
+                  /************************************************************/
+
+
+
+
+                  }
               </div>
             </div>
           </div>
